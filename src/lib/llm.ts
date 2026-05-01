@@ -2,7 +2,9 @@ import Anthropic from "@anthropic-ai/sdk";
 import { DiagnosticoResult } from "@/types";
 import { getKnowledgeBase } from "./knowledge-base";
 
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+function getClient() {
+  return new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+}
 
 // ─── Call 1: Free-text process mapping ────────────────────────────────────────
 
@@ -132,6 +134,7 @@ export async function analyzePDF(
   empreendimento: string
 ): Promise<DiagnosticoResult> {
   // Call 1 — free-text mapping
+  const client = getClient();
   const mappingResp = await client.messages.create({
     model: "claude-sonnet-4-6",
     max_tokens: 8096,
