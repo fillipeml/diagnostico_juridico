@@ -15,6 +15,10 @@ function getPool(): mysql.Pool {
       connectionLimit: 5,
       timezone: "+00:00",
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (pool as any).on("error", (err: unknown) => {
+      console.error("[db] pool error:", err);
+    });
   }
   return pool;
 }

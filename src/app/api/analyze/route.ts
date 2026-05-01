@@ -7,8 +7,11 @@ import { query, initDB } from "@/lib/db";
 export const maxDuration = 300;
 
 export async function POST(request: NextRequest) {
+  console.log("[analyze] step 1: handler started");
   try {
+    console.log("[analyze] step 2: calling initDB");
     await initDB();
+    console.log("[analyze] step 3: initDB done");
 
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
@@ -39,9 +42,12 @@ export async function POST(request: NextRequest) {
     }
 
     const buffer = Buffer.from(await file.arrayBuffer());
+    console.log("[analyze] step 4: buffer ready, size:", buffer.length);
 
     // Upload PDF to S3
+    console.log("[analyze] step 5: uploading to S3");
     const fileUrl = await uploadToS3(buffer, file.name, file.type);
+    console.log("[analyze] step 6: S3 done", fileUrl);
 
     // Create DB record with status "processando"
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -52,7 +58,9 @@ export async function POST(request: NextRequest) {
     const id: number = insertResult.insertId;
 
     // Extract text from PDF
+    console.log("[analyze] step 7: extracting PDF");
     const extracted = await extractPDF(buffer);
+    console.log("[analyze] step 8: PDF extracted, isScanned:", extracted.isScanned);
 
     if (extracted.isScanned) {
       await query(
