@@ -1,4 +1,6 @@
-import { PDFParse } from "pdf-parse";
+// Direct lib import bypasses index.js which reads test files (incompatible with serverless)
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const pdfParse = require("pdf-parse/lib/pdf-parse.js");
 import { CLIENT_COMPANY_FRAGMENTS } from "./empresas";
 
 export interface ExtractedPDF {
@@ -56,10 +58,9 @@ function isFromClientCompany(surroundingText: string): boolean {
 }
 
 export async function extractPDF(buffer: Buffer): Promise<ExtractedPDF> {
-  const parser = new PDFParse({ data: buffer });
-  const data = await parser.getText();
-  const pageCount = data.total;
-  const rawText = data.text || "";
+  const data = await pdfParse(buffer);
+  const pageCount = data.numpages as number;
+  const rawText = (data.text as string) || "";
 
   // Detect scanned PDF: very little text per page
   const avgCharsPerPage = rawText.length / Math.max(pageCount, 1);
