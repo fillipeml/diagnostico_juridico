@@ -34,6 +34,23 @@ export async function query<T = unknown>(
 }
 
 export async function initDB(): Promise<void> {
+  const dbName = process.env.DB_NAME || "diagnostico_juridico";
+
+  // Create database if it doesn't exist (uses a one-off connection without database)
+  const conn = await mysql.createConnection({
+    host: process.env.DB_HOST,
+    port: parseInt(process.env.DB_PORT || "4000"),
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    ssl: { minVersion: "TLSv1.2", rejectUnauthorized: true },
+    timezone: "+00:00",
+  });
+  try {
+    await conn.execute(`CREATE DATABASE IF NOT EXISTS \`${dbName}\``);
+  } finally {
+    await conn.end();
+  }
+
   await query(`
     CREATE TABLE IF NOT EXISTS diagnosticos (
       id INT AUTO_INCREMENT PRIMARY KEY,
