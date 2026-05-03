@@ -86,8 +86,8 @@ Use EXATAMENTE estes códigos:
 • tese_juridica_possivel — tese com amparo legal/jurisprudencial que poderia mudar o resultado
 
 ━━━ INSTRUÇÕES OBRIGATÓRIAS ━━━
-• Bloco 3: máximo 8 teses. Priorize as mais impactantes. Títulos específicos e concretos (ex: "Ausência de impugnação específica da cláusula 5.6" — nunca "Lacuna na contestação"). Campo "analise": máximo 4 frases.
-• Bloco 4: entre 2 e 3 oportunidades. Campo "padraoSugerido": máximo 3 parágrafos curtos. Campo "checklist": máximo 4 itens.
+• Bloco 3: máximo 10 teses — priorize as mais impactantes. Títulos específicos e concretos (ex: "Ausência de impugnação específica da cláusula 5.6" — nunca "Lacuna na contestação"). Campo "analise": máximo 4 frases diretas.
+• Bloco 4: 3 oportunidades. Campo "padraoSugerido": máximo 3 parágrafos. Campo "checklist": máximo 4 itens.
 • achadoNovo: true = nunca levantado; false = levantado mas de forma insuficiente.
 • Análise do risco: cubra as 4 dimensões (A) Cobertura (B) Prova (C) Fase recursal (D) Nexo causal. Cada dimensão: máximo 3 frases.
 • CRÍTICO: o JSON deve ser completamente fechado. Nunca deixe arrays ou objetos abertos.
@@ -137,7 +137,7 @@ export async function analyzePDF(
   const client = getClient();
   const mappingResp = await client.messages.create({
     model: "claude-sonnet-4-6",
-    max_tokens: 2000,
+    max_tokens: 1500,
     system: MAPPING_SYSTEM,
     messages: [
       {
@@ -155,7 +155,7 @@ export async function analyzePDF(
   // Call 2 — structured diagnostic JSON
   const diagnosticResp = await client.messages.create({
     model: "claude-sonnet-4-6",
-    max_tokens: 7000,
+    max_tokens: 8000,
     system: buildDiagnosticSystem(empreendimento),
     messages: [
       {
