@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Diagnóstico Processual Inteligente — STG
 
-## Getting Started
+Aplicação web interna para análise estratégica de processos judiciais via IA, desenvolvida como teste técnico para a STG/Cipasa.
 
-First, run the development server:
+**Demo em produção:** https://diagnostico-juridico.vercel.app/
+
+---
+
+## O que o sistema faz
+
+Recebe o PDF de um processo judicial do contencioso imobiliário e devolve um relatório em 4 blocos:
+
+1. **Complexidade Processual** — Baixa, Média ou Alta, com justificativa objetiva
+2. **Risco das Teses Atuais** — análise em 4 dimensões (cobertura, prova, fase recursal, nexo causal)
+3. **Teses Não Exploradas** — lacunas defensivas identificadas pela IA, categorizadas por tipo
+4. **Oportunidades de Melhoria** — padrões replicáveis para todos os processos similares do empreendimento
+
+O resultado pode ser copiado com um clique e colado diretamente no Excel.
+
+---
+
+## Stack
+
+- **Frontend:** Next.js 15 + React 19 + TypeScript + Tailwind CSS v4
+- **IA:** Anthropic Claude Sonnet 4.6 (pipeline de 2 chamadas)
+- **Banco de dados:** TiDB Cloud (MySQL-compatível, serverless)
+- **Armazenamento:** AWS S3 — cada PDF enviado é arquivado
+- **Deploy:** Vercel
+- **Testes:** Vitest (17 testes em 4 arquivos)
+
+---
+
+## Decisões de arquitetura
+
+### Pipeline de 2 chamadas ao Claude
+
+A análise usa duas chamadas sequenciais ao modelo:
+
+**Chamada 1 — Mapa Livre:** o modelo lê o processo e produz um texto corrido cobrindo partes, pedidos, resposta da defesa, lacunas, histórico decisório e um QUADRO RESUMO FINAL com o resultado de cada pedido.
+
+**Chamada 2 — Diagnóstico Estruturado:** recebe o mapa como entrada e gera o JSON final dos 4 blocos.
+
+Separar as chamadas força o modelo a "raciocinar" antes de estruturar, o que reduz drasticamente alucinações — um modelo que recebe só o PDF e precisa gerar JSON direto tende a inventar fatos.
+
+### PASSO ZERO — filtro anti-alucinação
+
+Antes de gerar qualquer tese, a segunda chamada lê o QUADRO RESUMO e extrai:
+- **Vitórias da defesa** → proibido mencionar esses temas como lacuna ou risco
+- **Temas ausentes dos autos** → proibido mencioná-los em qualquer bloco
+
+Exemplo: se a sentença julgou danos morais improcedentes, o sistema reconhece isso como vitória da defesa e jamais gera uma tese sobre danos morais no Bloco 3.
+
+### Extração inteligente de seções
+
+O PDF não é enviado inteiro para a IA. O extrator identifica as peças processuais por palavras-chave (petição inicial, contestação, apelação, embargos, REsp) e envia apenas essas seções, com limite de 40.000 chars por seção e 150.000 chars no total.
+
+Para a contestação, aplica um filtro adicional: só extrai trechos onde o nome da empresa ré pertence ao grupo Cipasa/Nova Cipasa, evitando que contestações da parte autora sejam analisadas como se fossem da defesa.
+
+### Base de conhecimento por empreendimento
+
+O sistema tem padrões extraídos de 31 arquivos reais de diagnóstico do contencioso STG/Cipasa, organizados por empreendimento. Esses padrões são injetados no prompt da segunda chamada, calibrando o diagnóstico com o histórico específico de cada projeto.
+
+---
+
+## Como rodar localmente
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/fillipeml/diagnostico_juridico
+cd diagnostico-juridico
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Crie um arquivo `.env.local` na raiz com as variáveis:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+ANTHROPIC_API_KEY=
+AWS_REGION=
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+S3_BUCKET_NAME=
+DB_HOST=
+DB_PORT=
+DB_USER=
+DB_PASSWORD=
+DB_NAME=
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev       # http://localhost:3000
+npm run test      # executa os 17 testes
+```
 
-## Learn More
+O banco de dados e a tabela são criados automaticamente na primeira requisição.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Estrutura do projeto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+├── app/
+│   ├── api/analyze/route.ts      # POST — recebe PDF, executa análise
+│   └── api/status/[id]/route.ts  # GET — busca diagnóstico por ID
+├── components/
+│   ├── DiagnosticoApp.tsx        # Componente raiz
+│   ├── Block1Complexidade.tsx
+│   ├── Block2Risco.tsx
+│   ├── Block3Teses.tsx
+│   ├── Block4Oportunidades.tsx
+│   └── CopyButton.tsx            # Exporta resultado para Excel
+└── lib/
+    ├── llm.ts                    # Pipeline 2 chamadas Claude
+    ├── pdf-extract.ts            # Extração inteligente de seções
+    ├── knowledge-base.ts         # Padrões por empreendimento
+    ├── db.ts                     # Pool MySQL + auto-init
+    └── s3.ts                     # Upload AWS S3
+```
