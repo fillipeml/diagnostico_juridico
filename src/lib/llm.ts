@@ -59,27 +59,34 @@ Com base no MAPA DO PROCESSO fornecido, gere um RELATÓRIO DE DIAGNÓSTICO ESTRA
 ${kb}
 
 ━━━ CHECKLIST DE VARREDURA (RADAR — NÃO LISTA DE SAÍDA) ━━━
-Use os itens abaixo como RADAR para identificar lacunas reais. Cada item é uma PERGUNTA — só gere uma tese se a resposta for "sim, isso existe nos autos".
+Use os itens abaixo como RADAR. Cada item é uma PERGUNTA CONDICIONAL — só gere uma tese se o pré-requisito em maiúsculas for satisfeito pelos documentos.
 
 REGRA DE OURO: uma tese só existe se o tema está nos documentos. Se não há pedido, não há tese. Se a ré ganhou o ponto, não há lacuna.
 
+VERIFICAÇÃO OBRIGATÓRIA antes de incluir qualquer tese no Bloco 3 ou menção no Bloco 2:
+  Passo 1 — O tema aparece explicitamente na petição inicial, sentença ou recurso? Se NÃO → DESCARTE.
+  Passo 2 — A ré JÁ GANHOU este ponto (juiz julgou improcedente ou acolheu defesa)? Se SIM → DESCARTE (vitória não é lacuna).
+  Passo 3 — A alegação é textualmente suportada por ao menos uma frase dos documentos? Se NÃO → DESCARTE.
+
 PROIBIDO — exemplos de alucinação que destroem a credibilidade do diagnóstico:
-✗ Apontar "lucros cessantes não foram rebatidos" se lucros cessantes não foram pedidos pelo autor
-✗ Apontar "danos morais precisam ser revertidos" se o juiz já julgou danos morais improcedentes (a ré ganhou)
-✗ Apontar "Lei 6.766/79 não foi invocada" se o processo não trata de atraso de obra
-✗ Qualquer tese sobre tema que não aparece na petição inicial, sentença ou recurso
+✗ Mencionar "lucros cessantes" ou Súmulas 161/162 se o autor NÃO pediu lucros cessantes
+✗ Mencionar "danos morais" como lacuna se o juiz JÁ julgou danos morais improcedentes
+✗ Mencionar "Lei 6.766/79" ou "atraso de obra" se o processo não versa sobre isso
+✗ Mencionar "distinção lote × imóvel pronto" em nexo causal se presunções de lucros cessantes não foram pedidas
+✗ Qualquer tese sobre tema ausente da petição inicial, sentença ou recurso
 
 CORRETO — exemplos de teses reais:
-✓ "Sentença concedeu 100% quando o autor pediu 90% — ultra petita não foi arguido" (porque ambos os valores estão nos autos)
-✓ "Defesa não impugnou o quantum: autora alegou R$ 44.000 mas contrato indica R$ 42.093,30" (porque a divergência está nos documentos)
+✓ "Sentença concedeu 100% quando o autor pediu 90% — ultra petita não foi arguido" (ambos os valores estão nos autos)
+✓ "Defesa não impugnou o quantum: autora alegou R$ 44.000 mas contrato indica R$ 42.093,30" (divergência está nos documentos)
+
  1. Nexo causal: o dano foi questionado ou aceito tacitamente? (lote ≠ imóvel pronto)
  2. Conduta do comprador: tentou construir? Pediu alvará? Usou o lote de alguma forma?
  3. Fruição econômica indireta: o lote se valorizou? Houve cessão ou promessa de cessão?
  4. Inversão do ônus da prova (CDC art. 6º, VIII): foi requerida? Foi impugnada?
- 5. Danos morais: o autor demonstrou abalo concreto além do inadimplemento?
- 6. Lucros cessantes: a presunção das Súmulas 161/162 TJSP se aplica a lote?
+ 5. Danos morais [SOMENTE SE o autor pediu E a ré NÃO ganhou este ponto]: o autor demonstrou abalo concreto além do inadimplemento?
+ 6. Lucros cessantes [SOMENTE SE o autor pediu lucros cessantes explicitamente]: a presunção das Súmulas 161/162 TJSP se aplica a lote?
  7. IPTU e encargos: quem deve pagar antes da entrega? Foi impugnado?
- 8. Alienação fiduciária (Lei 9.514/1997): o regime especial foi invocado como preliminar?
+ 8. Alienação fiduciária (Lei 9.514/1997) [SOMENTE SE o contrato tem AF registrada OU a ré a invocou]: o regime especial foi invocado como preliminar?
  9. Cláusula penal contratual: há previsão de retenção? Foi defendida subsidiariamente?
 10. Culpa concorrente do comprador: o comprador contribuiu para o dano?
 11. Inovação recursal (art. 1.014 do CPC): alguma tese foi suscitada somente em recurso?
@@ -101,8 +108,8 @@ Use EXATAMENTE estes códigos:
 • Bloco 3: máximo 10 teses — priorize as mais impactantes. Títulos específicos e concretos (ex: "Ausência de impugnação específica da cláusula 5.6" — nunca "Lacuna na contestação"). Campo "analise": máximo 4 frases diretas.
 • Bloco 4: 3 oportunidades. Campo "padraoSugerido": máximo 3 parágrafos. Campo "checklist": máximo 4 itens.
 • achadoNovo: true = nunca levantado; false = levantado mas de forma insuficiente.
-• Análise do risco: cubra as 4 dimensões (A) Cobertura (B) Prova (C) Fase recursal (D) Nexo causal. Cada dimensão: máximo 3 frases.
-• ANTI-ALUCINAÇÃO: baseie-se EXCLUSIVAMENTE no que está nos documentos. Se danos morais foram rejeitados, não os mencione como problema. Se lucros cessantes não foram pedidos, não os inclua. O diagnóstico deve refletir o processo real, não um processo hipotético.
+• Análise do risco (Bloco 2): cada dimensão máximo 3 frases. RESTRIÇÃO ABSOLUTA: mencione APENAS institutos jurídicos que aparecem nos documentos. Se lucros cessantes não foram pedidos, NÃO escreva sobre lucros cessantes em nenhuma dimensão. Se danos morais foram rejeitados, NÃO os mencione como risco. Escreva sobre o que o processo REALMENTE contém.
+• ANTI-ALUCINAÇÃO: aplique os 3 passos de verificação antes de cada tese. O diagnóstico deve refletir o processo real, não um processo hipotético.
 • CRÍTICO: o JSON deve ser completamente fechado. Nunca deixe arrays ou objetos abertos.
 
 Retorne EXCLUSIVAMENTE JSON válido. Sem texto adicional. Sem markdown. Sem explicações.
