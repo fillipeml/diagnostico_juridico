@@ -47,16 +47,24 @@ Analise cada peça processual identificada e produza um texto corrido cobrindo O
 8. QUADRO RESUMO FINAL — OBRIGATÓRIO
    Produza exatamente neste formato:
 
-   PEDIDOS DO AUTOR E RESULTADO:
-   - [pedido]: PROCEDENTE | IMPROCEDENTE | PARCIALMENTE PROCEDENTE
+   PEDIDOS DO AUTOR — RESULTADO DEFINITIVO:
+   Para CADA pedido, escreva: [pedido] → PROCEDENTE | IMPROCEDENTE | PARCIALMENTE PROCEDENTE — [motivo em uma linha]
+   Inclua obrigatoriamente: rescisão, restituição de valores, danos morais (se pedido), e todos os demais.
 
-   VITÓRIAS DA DEFESA (juiz negou o pedido do autor):
-   - [tema]: motivo resumido
+   DIVERGÊNCIA PEDIDO × CONCESSÃO:
+   Compare o percentual ou valor PEDIDO pelo autor com o efetivamente CONCEDIDO pela sentença/acórdão.
+   Se houver diferença, registre: "Autora pediu X% → sentença concedeu Y% (ultra petita)" ou "sem divergência".
+
+   HONORÁRIOS MAJORADOS EM RECURSO:
+   O acórdão aplicou art. 85, §11 CPC e majorou honorários? Se sim, registre de quanto para quanto.
+
+   VITÓRIAS DA DEFESA (pedidos julgados IMPROCEDENTES = ré ganhou):
+   - [pedido] → IMPROCEDENTE — [motivo]
 
    TEMAS AUSENTES (nunca pedidos nem mencionados nos autos):
    - [tema]
 
-Este quadro é a âncora factual do diagnóstico. Seja preciso: não confunda "pedido alegado" com "pedido concedido".`;
+Este quadro é a âncora factual do diagnóstico. Seja preciso: não confunda "pedido alegado" com "pedido concedido". Danos morais rejeitados = vitória da defesa = NÃO é lacuna defensiva.`;
 
 // ─── Call 2: Structured diagnostic ───────────────────────────────────────────
 
@@ -71,10 +79,18 @@ Com base no MAPA DO PROCESSO fornecido, gere um RELATÓRIO DE DIAGNÓSTICO ESTRA
 ${kb}
 
 ━━━ PASSO ZERO — ANTES DE QUALQUER ANÁLISE ━━━
-Leia a seção "8. QUADRO RESUMO FINAL" do mapa do processo.
-• VITÓRIAS DA DEFESA → esses temas são PROIBIDOS no Bloco 3 e no Bloco 2. A ré já ganhou. Gerar teses sobre eles é erro grave.
-• TEMAS AUSENTES → esses temas não existem nos autos. Mencioná-los em qualquer bloco é alucinação.
-Use o QUADRO RESUMO como filtro absoluto. Qualquer tese que contradiga o QUADRO RESUMO deve ser descartada.
+Leia a seção "8. QUADRO RESUMO FINAL" do mapa do processo e extraia:
+
+A) VITÓRIAS DA DEFESA → PROIBIDOS no Bloco 3 e Bloco 2. A ré já ganhou esses pontos. Gerar teses sobre eles é erro grave de alucinação.
+   Exemplo crítico: se "danos morais → IMPROCEDENTE" constar no quadro, é PROIBIDO mencionar danos morais como lacuna ou risco em qualquer bloco.
+
+B) TEMAS AUSENTES → não existem nos autos. Proibido mencioná-los.
+
+C) DIVERGÊNCIA PEDIDO × CONCESSÃO → Se o quadro registrar divergência (ex: "pediu 90% → concedeu 100%"), gere OBRIGATORIAMENTE uma tese no Bloco 3 sobre ultra petita (art. 492 CPC) com categoria "fundamento_nao_atacado".
+
+D) HONORÁRIOS MAJORADOS → Se o quadro registrar majoração por art. 85, §11 CPC, mencione o impacto no Bloco 2 (dimensão C ou síntese) e considere gerar tese sobre a imprudência do recurso no Bloco 3.
+
+Use o QUADRO RESUMO como filtro absoluto e fonte de detecção obrigatória.
 
 ━━━ CHECKLIST DE VARREDURA (RADAR — NÃO LISTA DE SAÍDA) ━━━
 Use os itens abaixo como RADAR. Cada item é uma PERGUNTA CONDICIONAL — só gere uma tese se o pré-requisito em maiúsculas for satisfeito pelos documentos.
