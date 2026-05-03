@@ -137,7 +137,7 @@ export async function analyzePDF(
   const client = getClient();
   const mappingResp = await client.messages.create({
     model: "claude-sonnet-4-6",
-    max_tokens: 8096,
+    max_tokens: 3000,
     system: MAPPING_SYSTEM,
     messages: [
       {
@@ -155,7 +155,7 @@ export async function analyzePDF(
   // Call 2 — structured diagnostic JSON
   const diagnosticResp = await client.messages.create({
     model: "claude-sonnet-4-6",
-    max_tokens: 8096,
+    max_tokens: 5000,
     system: buildDiagnosticSystem(empreendimento),
     messages: [
       {
