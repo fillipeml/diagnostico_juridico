@@ -200,7 +200,7 @@ export async function analyzePDF(
   const client = getClient();
   const mappingResp = await client.messages.create({
     model: "claude-sonnet-4-6",
-    max_tokens: 2500,
+    max_tokens: 8000,
     system: MAPPING_SYSTEM,
     messages: [
       {

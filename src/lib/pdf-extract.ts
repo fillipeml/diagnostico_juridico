@@ -44,7 +44,8 @@ const SECTION_KEYWORDS: Record<string, string[]> = {
 };
 
 // Sections where we only extract client company petitions
-const CLIENT_ONLY: Set<string> = new Set(["CONTESTAÇÃO", "APELAÇÃO"]);
+// Apelação is excluded: both the client AND the autora (plaintiff) can appeal per spec
+const CLIENT_ONLY: Set<string> = new Set(["CONTESTAÇÃO"]);
 
 // Max chars to extract per section (~40 pages at ~1000 chars/page)
 const MAX_SECTION_CHARS = 40_000;
