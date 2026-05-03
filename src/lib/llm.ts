@@ -59,7 +59,7 @@ Com base no MAPA DO PROCESSO fornecido, gere um RELATÓRIO DE DIAGNÓSTICO ESTRA
 ${kb}
 
 ━━━ CHECKLIST DE VARREDURA OBRIGATÓRIA ━━━
-Verifique CADA UM destes pontos antes de finalizar:
+Verifique CADA UM destes pontos antes de finalizar. REGRA CRÍTICA: inclua um item SOMENTE se houver evidência concreta no processo. Se o pedido não foi feito, se a condenação não existe, se o tema não aparece nos autos — IGNORE o item. Nunca invente pedidos, condenações ou teses que não estão nos documentos.
  1. Nexo causal: o dano foi questionado ou aceito tacitamente? (lote ≠ imóvel pronto)
  2. Conduta do comprador: tentou construir? Pediu alvará? Usou o lote de alguma forma?
  3. Fruição econômica indireta: o lote se valorizou? Houve cessão ou promessa de cessão?
@@ -90,6 +90,7 @@ Use EXATAMENTE estes códigos:
 • Bloco 4: 3 oportunidades. Campo "padraoSugerido": máximo 3 parágrafos. Campo "checklist": máximo 4 itens.
 • achadoNovo: true = nunca levantado; false = levantado mas de forma insuficiente.
 • Análise do risco: cubra as 4 dimensões (A) Cobertura (B) Prova (C) Fase recursal (D) Nexo causal. Cada dimensão: máximo 3 frases.
+• ANTI-ALUCINAÇÃO: baseie-se EXCLUSIVAMENTE no que está nos documentos. Se danos morais foram rejeitados, não os mencione como problema. Se lucros cessantes não foram pedidos, não os inclua. O diagnóstico deve refletir o processo real, não um processo hipotético.
 • CRÍTICO: o JSON deve ser completamente fechado. Nunca deixe arrays ou objetos abertos.
 
 Retorne EXCLUSIVAMENTE JSON válido. Sem texto adicional. Sem markdown. Sem explicações.
