@@ -44,7 +44,19 @@ Analise cada peça processual identificada e produza um texto corrido cobrindo O
    – CDC aplicado como principal ou complementar?
    – Prazo de tolerância? Força maior? Culpa concorrente?
 
-Seja exaustivo. Não omita nenhum elemento. Este mapa alimentará o diagnóstico estratégico final.`;
+8. QUADRO RESUMO FINAL — OBRIGATÓRIO
+   Produza exatamente neste formato:
+
+   PEDIDOS DO AUTOR E RESULTADO:
+   - [pedido]: PROCEDENTE | IMPROCEDENTE | PARCIALMENTE PROCEDENTE
+
+   VITÓRIAS DA DEFESA (juiz negou o pedido do autor):
+   - [tema]: motivo resumido
+
+   TEMAS AUSENTES (nunca pedidos nem mencionados nos autos):
+   - [tema]
+
+Este quadro é a âncora factual do diagnóstico. Seja preciso: não confunda "pedido alegado" com "pedido concedido".`;
 
 // ─── Call 2: Structured diagnostic ───────────────────────────────────────────
 
@@ -57,6 +69,12 @@ Com base no MAPA DO PROCESSO fornecido, gere um RELATÓRIO DE DIAGNÓSTICO ESTRA
 
 ━━━ BASE DE CONHECIMENTO ━━━
 ${kb}
+
+━━━ PASSO ZERO — ANTES DE QUALQUER ANÁLISE ━━━
+Leia a seção "8. QUADRO RESUMO FINAL" do mapa do processo.
+• VITÓRIAS DA DEFESA → esses temas são PROIBIDOS no Bloco 3 e no Bloco 2. A ré já ganhou. Gerar teses sobre eles é erro grave.
+• TEMAS AUSENTES → esses temas não existem nos autos. Mencioná-los em qualquer bloco é alucinação.
+Use o QUADRO RESUMO como filtro absoluto. Qualquer tese que contradiga o QUADRO RESUMO deve ser descartada.
 
 ━━━ CHECKLIST DE VARREDURA (RADAR — NÃO LISTA DE SAÍDA) ━━━
 Use os itens abaixo como RADAR. Cada item é uma PERGUNTA CONDICIONAL — só gere uma tese se o pré-requisito em maiúsculas for satisfeito pelos documentos.
@@ -157,7 +175,7 @@ export async function analyzePDF(
   const client = getClient();
   const mappingResp = await client.messages.create({
     model: "claude-sonnet-4-6",
-    max_tokens: 1500,
+    max_tokens: 2000,
     system: MAPPING_SYSTEM,
     messages: [
       {
