@@ -86,11 +86,11 @@ Use EXATAMENTE estes códigos:
 • tese_juridica_possivel — tese com amparo legal/jurisprudencial que poderia mudar o resultado
 
 ━━━ INSTRUÇÕES OBRIGATÓRIAS ━━━
-• Bloco 3: seja EXAUSTIVO — não há limite de teses. Cubra TODOS os pontos do checklist acima.
-• Títulos de teses: específicos e concretos (ex: "Ausência de impugnação específica da cláusula 5.6" — nunca "Lacuna na contestação").
-• Bloco 4: mínimo 3 oportunidades com padrões replicáveis para TODO o contencioso do empreendimento.
+• Bloco 3: máximo 8 teses. Priorize as mais impactantes. Títulos específicos e concretos (ex: "Ausência de impugnação específica da cláusula 5.6" — nunca "Lacuna na contestação"). Campo "analise": máximo 4 frases.
+• Bloco 4: entre 2 e 3 oportunidades. Campo "padraoSugerido": máximo 3 parágrafos curtos. Campo "checklist": máximo 4 itens.
 • achadoNovo: true = nunca levantado; false = levantado mas de forma insuficiente.
-• Análise do risco: cubra OBRIGATORIAMENTE as 4 dimensões (A) Cobertura (B) Prova (C) Fase recursal (D) Nexo causal.
+• Análise do risco: cubra as 4 dimensões (A) Cobertura (B) Prova (C) Fase recursal (D) Nexo causal. Cada dimensão: máximo 3 frases.
+• CRÍTICO: o JSON deve ser completamente fechado. Nunca deixe arrays ou objetos abertos.
 
 Retorne EXCLUSIVAMENTE JSON válido. Sem texto adicional. Sem markdown. Sem explicações.
 
