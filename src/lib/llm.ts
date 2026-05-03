@@ -143,12 +143,17 @@ Use EXATAMENTE estes códigos:
 • tese_juridica_possivel — tese com amparo legal/jurisprudencial que poderia mudar o resultado
 
 ━━━ INSTRUÇÕES OBRIGATÓRIAS ━━━
-• Bloco 3: máximo 10 teses — priorize as mais impactantes. Títulos específicos e concretos (ex: "Ausência de impugnação específica da cláusula 5.6" — nunca "Lacuna na contestação"). Campo "analise": máximo 4 frases diretas.
-• Bloco 4: 3 oportunidades. Campo "padraoSugerido": máximo 3 parágrafos. Campo "checklist": máximo 4 itens.
+• Bloco 3: não há limite máximo de teses — gere todas as que forem relevantes. Títulos específicos e concretos (ex: "Ausência de impugnação específica da cláusula 5.6" — nunca "Lacuna na contestação"). Campo "analise": máximo 4 frases diretas.
+• Bloco 4: mínimo 3 oportunidades. Campo "padraoSugerido": 3 a 5 parágrafos com raciocínio jurídico completo. Campo "checklist": 4 a 6 itens verificáveis e concretos.
 • achadoNovo: true = nunca levantado; false = levantado mas de forma insuficiente.
 • Análise do risco (Bloco 2): cada dimensão máximo 3 frases. RESTRIÇÃO ABSOLUTA: mencione APENAS institutos jurídicos que aparecem nos documentos. Se lucros cessantes não foram pedidos, NÃO escreva sobre lucros cessantes em nenhuma dimensão. Se danos morais foram rejeitados, NÃO os mencione como risco. Escreva sobre o que o processo REALMENTE contém.
 • ANTI-ALUCINAÇÃO: aplique os 3 passos de verificação antes de cada tese. O diagnóstico deve refletir o processo real, não um processo hipotético.
 • CRÍTICO: o JSON deve ser completamente fechado. Nunca deixe arrays ou objetos abertos.
+
+CRITÉRIOS DE COMPLEXIDADE (use para definir o "nivel"):
+• Baixa: 1 réu, 1-2 pedidos simples, sem recurso pendente, provas documentais apenas
+• Média: múltiplos pedidos OU recurso em andamento OU prova pericial OU litisconsórcio
+• Alta: múltiplos réus + recursos + pedidos complexos (dano moral, lucros cessantes, nulidade) + divergência jurisprudencial
 
 Retorne EXCLUSIVAMENTE JSON válido. Sem texto adicional. Sem markdown. Sem explicações.
 

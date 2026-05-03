@@ -17,6 +17,7 @@ const SECTION_KEYWORDS: Record<string, string[]> = {
     "requer a vossa excelência",
     "vem à presença",
     "vem a presença",
+    "inicial",
   ],
   CONTESTAÇÃO: [
     "apresentar sua contestação",
@@ -28,6 +29,7 @@ const SECTION_KEYWORDS: Record<string, string[]> = {
     "razões de apelação",
     "recorre da sentença",
     "apelante vem",
+    "apelante",
     "razões recursais",
     "apelação cível",
   ],
