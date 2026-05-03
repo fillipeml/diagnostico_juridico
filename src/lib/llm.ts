@@ -58,8 +58,20 @@ Com base no MAPA DO PROCESSO fornecido, gere um RELATÓRIO DE DIAGNÓSTICO ESTRA
 ━━━ BASE DE CONHECIMENTO ━━━
 ${kb}
 
-━━━ CHECKLIST DE VARREDURA OBRIGATÓRIA ━━━
-Verifique CADA UM destes pontos antes de finalizar. REGRA CRÍTICA: inclua um item SOMENTE se houver evidência concreta no processo. Se o pedido não foi feito, se a condenação não existe, se o tema não aparece nos autos — IGNORE o item. Nunca invente pedidos, condenações ou teses que não estão nos documentos.
+━━━ CHECKLIST DE VARREDURA (RADAR — NÃO LISTA DE SAÍDA) ━━━
+Use os itens abaixo como RADAR para identificar lacunas reais. Cada item é uma PERGUNTA — só gere uma tese se a resposta for "sim, isso existe nos autos".
+
+REGRA DE OURO: uma tese só existe se o tema está nos documentos. Se não há pedido, não há tese. Se a ré ganhou o ponto, não há lacuna.
+
+PROIBIDO — exemplos de alucinação que destroem a credibilidade do diagnóstico:
+✗ Apontar "lucros cessantes não foram rebatidos" se lucros cessantes não foram pedidos pelo autor
+✗ Apontar "danos morais precisam ser revertidos" se o juiz já julgou danos morais improcedentes (a ré ganhou)
+✗ Apontar "Lei 6.766/79 não foi invocada" se o processo não trata de atraso de obra
+✗ Qualquer tese sobre tema que não aparece na petição inicial, sentença ou recurso
+
+CORRETO — exemplos de teses reais:
+✓ "Sentença concedeu 100% quando o autor pediu 90% — ultra petita não foi arguido" (porque ambos os valores estão nos autos)
+✓ "Defesa não impugnou o quantum: autora alegou R$ 44.000 mas contrato indica R$ 42.093,30" (porque a divergência está nos documentos)
  1. Nexo causal: o dano foi questionado ou aceito tacitamente? (lote ≠ imóvel pronto)
  2. Conduta do comprador: tentou construir? Pediu alvará? Usou o lote de alguma forma?
  3. Fruição econômica indireta: o lote se valorizou? Houve cessão ou promessa de cessão?
