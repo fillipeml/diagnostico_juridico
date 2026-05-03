@@ -137,7 +137,7 @@ export async function analyzePDF(
   const client = getClient();
   const mappingResp = await client.messages.create({
     model: "claude-sonnet-4-6",
-    max_tokens: 3000,
+    max_tokens: 2000,
     system: MAPPING_SYSTEM,
     messages: [
       {
@@ -155,7 +155,7 @@ export async function analyzePDF(
   // Call 2 — structured diagnostic JSON
   const diagnosticResp = await client.messages.create({
     model: "claude-sonnet-4-6",
-    max_tokens: 5000,
+    max_tokens: 7000,
     system: buildDiagnosticSystem(empreendimento),
     messages: [
       {
@@ -176,7 +176,12 @@ export async function analyzePDF(
     throw new Error("O modelo não retornou JSON válido no diagnóstico.");
   }
 
-  const result = JSON.parse(jsonMatch[0]) as DiagnosticoResult;
+  let result: DiagnosticoResult;
+  try {
+    result = JSON.parse(jsonMatch[0]) as DiagnosticoResult;
+  } catch {
+    throw new Error("O diagnóstico foi gerado mas o JSON ficou incompleto. Tente novamente com um PDF menor ou aguarde alguns instantes.");
+  }
 
   // Validate required fields
   if (!result.complexidade || !result.risco || !result.tesesnaoExploradas || !result.oportunidades) {
