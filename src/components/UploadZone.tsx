@@ -14,12 +14,17 @@ export default function UploadZone({
   disabled,
 }: UploadZoneProps) {
   const [dragging, setDragging] = useState(false);
+  const [invalidFile, setInvalidFile] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleFile = useCallback(
     (file: File) => {
       if (file.type === "application/pdf") {
+        setInvalidFile(false);
         onFileSelect(file);
+      } else {
+        setInvalidFile(true);
+        setTimeout(() => setInvalidFile(false), 3000);
       }
     },
     [onFileSelect]
@@ -53,6 +58,7 @@ export default function UploadZone({
         ${dragging ? "border-stg-orange bg-orange-50 scale-[1.01]" : "border-gray-300 hover:border-stg-navy hover:shadow-md bg-gray-50"}
         ${disabled ? "opacity-50 cursor-not-allowed" : "active:scale-[0.999]"}
         ${selectedFile ? "border-stg-navy bg-blue-50" : ""}
+        ${invalidFile ? "border-red-400 bg-red-50" : ""}
       `}
       onDrop={disabled ? undefined : onDrop}
       onDragOver={disabled ? undefined : onDragOver}
@@ -95,9 +101,15 @@ export default function UploadZone({
               ou clique para selecionar
             </p>
           </div>
-          <p className="text-xs text-gray-400">
-            Cópia integral do processo · PDF · Máx. 50 MB
-          </p>
+          {invalidFile ? (
+            <p className="text-xs font-semibold text-red-500">
+              Formato inválido — selecione um arquivo PDF
+            </p>
+          ) : (
+            <p className="text-xs text-gray-400">
+              Cópia integral do processo · PDF · Máx. 50 MB
+            </p>
+          )}
         </div>
       )}
     </div>
