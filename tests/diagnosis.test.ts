@@ -20,6 +20,7 @@ function validateDiagnosticoResult(result: unknown): result is DiagnosticoResult
   if (typeof risk.prova !== "string") return false;
   if (typeof risk.faseRecursal !== "string") return false;
   if (typeof risk.nexoCausal !== "string") return false;
+  if (typeof risk.analiseGeral !== "string") return false;
 
   // Block 3 — tesesnaoExploradas
   if (!Array.isArray(r.tesesnaoExploradas)) return false;
