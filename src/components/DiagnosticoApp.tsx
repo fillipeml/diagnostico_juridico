@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import UploadZone from "./UploadZone";
 import EmpreendimentoSelect from "./EmpreendimentoSelect";
 import Block1Complexidade from "./Block1Complexidade";
@@ -107,9 +108,13 @@ export default function DiagnosticoApp() {
       <header className="bg-stg-navy shadow-md">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded bg-stg-orange flex items-center justify-center font-bold text-white text-sm">
-              STG
-            </div>
+            <Image
+              src="/stg-logo.png"
+              alt="STG"
+              width={36}
+              height={36}
+              className="rounded"
+            />
             <div>
               <h1 className="text-white font-semibold text-base leading-tight">
                 Diagnóstico Processual Inteligente
@@ -159,7 +164,11 @@ export default function DiagnosticoApp() {
             <button
               onClick={handleSubmit}
               disabled={!file}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-stg-navy text-white font-semibold text-sm hover:bg-[#00243f] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md transition-all duration-150"
+              className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-sm shadow-sm transition-all duration-200 ${
+                file
+                  ? "bg-stg-orange text-white hover:bg-orange-600 active:scale-[0.98] hover:shadow-md cursor-pointer"
+                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
+              }`}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
