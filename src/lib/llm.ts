@@ -38,7 +38,8 @@ Analise cada peça processual identificada e produza um texto corrido cobrindo O
 6. HISTÓRICO DECISÓRIO
    – Cada decisão proferida: data, fundamento, dispositivo
    – O que foi acolhido e o que foi negado em cada decisão
-   – CÁLCULO ULTRA PETITA: se o autor pediu percentual (ex: 90%) e a sentença concedeu "devolução integral" ou 100%, compute explicitamente: "autora pediu 90% → sentença concedeu 100% = ultra petita confirmado". Registre isso no QUADRO RESUMO como fato confirmado, não como hipótese.
+   – ULTRA PETITA: compare o EXATO percentual/valor pedido pelo autor (ex: "90%") com o EXATO dispositivo da sentença (ex: "devolução integral" = 100%). Se a sentença concedeu mais que o pedido, escreva: "ULTRA PETITA CONFIRMADO: autor pediu X% → sentença concedeu Y%".
+   – HONORÁRIOS: verifique se o acórdão contém a expressão "art. 85, §11" ou "majoro os honorários". Se encontrar, registre o valor antes e depois.
 
 7. REGIME JURÍDICO DO CONTRATO
    – Há alienação fiduciária registrada? Foi invocada como preliminar?
@@ -46,30 +47,27 @@ Analise cada peça processual identificada e produza um texto corrido cobrindo O
    – Prazo de tolerância? Força maior? Culpa concorrente?
 
 8. QUADRO RESUMO FINAL — OBRIGATÓRIO
-   Produza exatamente neste formato:
+   Produza exatamente neste formato (não omita nenhuma seção):
 
    PEDIDOS DO AUTOR — RESULTADO DEFINITIVO:
-   Para CADA pedido, escreva: [pedido] → PROCEDENTE | IMPROCEDENTE | PARCIALMENTE PROCEDENTE — [motivo em uma linha]
-   Inclua obrigatoriamente: rescisão, restituição de valores, danos morais (se pedido), e todos os demais.
+   Para CADA pedido: [pedido] → PROCEDENTE | IMPROCEDENTE | PARCIALMENTE PROCEDENTE — [motivo]
 
-   DIVERGÊNCIA PEDIDO × CONCESSÃO:
-   Compare o percentual ou valor PEDIDO pelo autor com o efetivamente CONCEDIDO pela sentença/acórdão.
-   Se houver diferença, registre: "Autora pediu X% → sentença concedeu Y% (ultra petita)" ou "sem divergência".
+   ULTRA PETITA (copie o cálculo da seção 6 acima, ou escreva "sem ultra petita"):
 
-   HONORÁRIOS MAJORADOS EM RECURSO:
-   O acórdão aplicou art. 85, §11 CPC e majorou honorários? Se sim, registre de quanto para quanto.
+   HONORÁRIOS MAJORADOS (copie o achado da seção 6, ou escreva "não majorados"):
 
-   VITÓRIAS DA DEFESA (pedidos julgados IMPROCEDENTES = ré ganhou):
+   VITÓRIAS DA DEFESA (pedidos IMPROCEDENTES):
    - [pedido] → IMPROCEDENTE — [motivo]
 
-   LEIS/NORMAS ESPECIAIS INVOCADAS PELAS PARTES OU PELO JUÍZO (além de CDC e CC):
-   - [lei e número]: invocada por [parte] para [finalidade]
-   Se nenhuma lei especial foi invocada: escreva "Nenhuma lei especial invocada além de CDC e CC".
+   LEIS EFETIVAMENTE ARGUIDAS PELAS PARTES OU PELO JUÍZO (além de CDC e CC):
+   ATENÇÃO: liste SOMENTE leis que uma das partes ou o juiz citou como FUNDAMENTO DE ARGUMENTO nos documentos. NÃO liste leis que apenas constituem o regime jurídico abstrato do contrato sem ter sido arguidas.
+   - [lei]: arguida por [parte] para [finalidade]
+   Se nenhuma: escreva "Nenhuma lei especial arguida — regime CDC e CC apenas".
 
-   TEMAS AUSENTES (nunca pedidos nem mencionados nos autos):
+   TEMAS AUSENTES (nunca pedidos nem mencionados):
    - [tema]
 
-Este quadro é a âncora factual do diagnóstico. Seja preciso: não confunda "pedido alegado" com "pedido concedido". Danos morais rejeitados = vitória da defesa = NÃO é lacuna defensiva.`;
+Este quadro é a âncora factual do diagnóstico. Danos morais rejeitados = vitória da defesa = NÃO é lacuna defensiva.`;
 
 // ─── Call 2: Structured diagnostic ───────────────────────────────────────────
 
@@ -197,7 +195,7 @@ export async function analyzePDF(
   const client = getClient();
   const mappingResp = await client.messages.create({
     model: "claude-sonnet-4-6",
-    max_tokens: 2000,
+    max_tokens: 2500,
     system: MAPPING_SYSTEM,
     messages: [
       {
