@@ -205,7 +205,7 @@ export default function DiagnosticoApp() {
               <p className="text-sm text-gray-500 mt-1">
                 Extraindo peças processuais e executando diagnóstico com IA.
                 <br />
-                Este processo pode levar até 2 minutos.
+                Este processo pode levar até 5 minutos.
               </p>
             </div>
             <div className="flex flex-col gap-2 text-sm text-gray-400 w-full max-w-xs">
