@@ -21,6 +21,7 @@ const METRIC_CARDS = [
     ),
     title: "Complexidade Processual",
     subtitle: "Baixa, Média ou Alta",
+    bg: "bg-stg-navy",
   },
   {
     icon: (
@@ -30,6 +31,7 @@ const METRIC_CARDS = [
     ),
     title: "Risco das Teses",
     subtitle: "Baixo, Médio ou Alto",
+    bg: "bg-stg-orange",
   },
   {
     icon: (
@@ -39,6 +41,7 @@ const METRIC_CARDS = [
     ),
     title: "Teses não exploradas",
     subtitle: "Lacunas identificadas",
+    bg: "bg-stg-navy",
   },
   {
     icon: (
@@ -48,6 +51,7 @@ const METRIC_CARDS = [
     ),
     title: "Oportunidades",
     subtitle: "Padrões replicáveis",
+    bg: "bg-stg-orange",
   },
 ];
 
@@ -178,7 +182,7 @@ export default function DiagnosticoApp() {
                   key={card.title}
                   className="bg-gray-50 border border-gray-100 rounded-xl p-3 text-center"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-stg-navy mx-auto mb-2 flex items-center justify-center">
+                  <div className={`w-9 h-9 rounded-lg ${card.bg} mx-auto mb-2 flex items-center justify-center`}>
                     {card.icon}
                   </div>
                   <p className="text-xs font-semibold text-gray-700 leading-tight">
