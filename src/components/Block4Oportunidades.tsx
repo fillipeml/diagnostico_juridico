@@ -19,7 +19,7 @@ function OportunidadeItem({
   return (
     <div className="border border-gray-100 rounded-xl overflow-hidden">
       <button
-        className="w-full text-left px-4 py-3 flex items-start gap-3 hover:bg-gray-50 transition-colors"
+        className="w-full text-left px-4 py-3 flex items-start gap-3 hover:bg-gray-50 active:bg-gray-100 transition-colors duration-100"
         onClick={() => setExpanded(!expanded)}
       >
         <span className="flex-shrink-0 w-6 h-6 rounded-full bg-stg-orange text-white text-xs font-bold flex items-center justify-center mt-0.5">
@@ -37,7 +37,7 @@ function OportunidadeItem({
       </button>
 
       {expanded && (
-        <div className="px-4 pb-5 pt-2 bg-gray-50 border-t border-gray-100 space-y-4">
+        <div className="px-4 pb-5 pt-2 bg-gray-50 border-t border-gray-100 space-y-4 animate-slideDown">
           <div>
             <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
               Origem no caso

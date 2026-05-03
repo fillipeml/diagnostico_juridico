@@ -122,7 +122,7 @@ export default function DiagnosticoApp() {
           {state === "done" && (
             <button
               onClick={handleReset}
-              className="text-xs text-blue-200 hover:text-white border border-blue-400 hover:border-white px-3 py-1.5 rounded-lg transition-colors"
+              className="text-xs text-blue-200 hover:text-white border border-blue-400 hover:border-white px-3 py-1.5 rounded-lg active:scale-95 transition-all duration-150"
             >
               Nova análise
             </button>
@@ -159,7 +159,7 @@ export default function DiagnosticoApp() {
             <button
               onClick={handleSubmit}
               disabled={!file}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-stg-navy text-white font-semibold text-sm hover:bg-[#00243f] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-stg-navy text-white font-semibold text-sm hover:bg-[#00243f] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md transition-all duration-150"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -180,7 +180,7 @@ export default function DiagnosticoApp() {
               {METRIC_CARDS.map((card) => (
                 <div
                   key={card.title}
-                  className="bg-gray-50 border border-gray-100 rounded-xl p-3 text-center"
+                  className="bg-gray-50 border border-gray-100 rounded-xl p-3 text-center hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
                 >
                   <div className={`w-9 h-9 rounded-lg ${card.bg} mx-auto mb-2 flex items-center justify-center`}>
                     {card.icon}

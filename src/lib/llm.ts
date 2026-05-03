@@ -91,6 +91,7 @@ PROIBIDO — exemplos de alucinação que destroem a credibilidade do diagnósti
 ✗ Mencionar "danos morais" como lacuna se o juiz JÁ julgou danos morais improcedentes
 ✗ Mencionar "Lei 6.766/79" ou "atraso de obra" se o processo não versa sobre isso
 ✗ Mencionar "distinção lote × imóvel pronto" em nexo causal se presunções de lucros cessantes não foram pedidas
+✗ Gerar tese sobre Lei 6.766/79 como regime complementar autônomo se a lei não foi invocada por nenhuma das partes — o fato de ser contrato de loteamento não basta
 ✗ Qualquer tese sobre tema ausente da petição inicial, sentença ou recurso
 
 CORRETO — exemplos de teses reais:

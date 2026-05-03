@@ -83,7 +83,7 @@ export default function CopyButton({
   return (
     <button
       onClick={handleCopy}
-      className="flex items-center gap-2 px-5 py-2.5 rounded-xl border-2 border-stg-navy text-stg-navy font-semibold text-sm hover:bg-stg-navy hover:text-white transition-all"
+      className="flex items-center gap-2 px-5 py-2.5 rounded-xl border-2 border-stg-navy text-stg-navy font-semibold text-sm hover:bg-stg-navy hover:text-white active:scale-95 shadow-sm hover:shadow-md transition-all duration-150"
     >
       {copied ? (
         <>

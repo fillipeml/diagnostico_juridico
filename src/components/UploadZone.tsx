@@ -49,9 +49,9 @@ export default function UploadZone({
 
   return (
     <div
-      className={`relative border-2 border-dashed rounded-xl p-10 text-center cursor-pointer transition-all
-        ${dragging ? "border-stg-orange bg-orange-50" : "border-gray-300 hover:border-stg-navy bg-gray-50"}
-        ${disabled ? "opacity-50 cursor-not-allowed" : ""}
+      className={`relative border-2 border-dashed rounded-xl p-10 text-center cursor-pointer transition-all duration-200 group
+        ${dragging ? "border-stg-orange bg-orange-50 scale-[1.01]" : "border-gray-300 hover:border-stg-navy hover:shadow-md bg-gray-50"}
+        ${disabled ? "opacity-50 cursor-not-allowed" : "active:scale-[0.999]"}
         ${selectedFile ? "border-stg-navy bg-blue-50" : ""}
       `}
       onDrop={disabled ? undefined : onDrop}
@@ -70,7 +70,7 @@ export default function UploadZone({
 
       {selectedFile ? (
         <div className="flex flex-col items-center gap-2">
-          <div className="w-12 h-12 rounded-full bg-stg-navy flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full bg-stg-navy flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
@@ -82,7 +82,7 @@ export default function UploadZone({
         </div>
       ) : (
         <div className="flex flex-col items-center gap-3">
-          <div className="w-12 h-12 rounded-full bg-stg-navy flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full bg-stg-navy flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
             </svg>
