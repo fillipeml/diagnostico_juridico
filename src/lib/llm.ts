@@ -38,6 +38,7 @@ Analise cada peça processual identificada e produza um texto corrido cobrindo O
 6. HISTÓRICO DECISÓRIO
    – Cada decisão proferida: data, fundamento, dispositivo
    – O que foi acolhido e o que foi negado em cada decisão
+   – CÁLCULO ULTRA PETITA: se o autor pediu percentual (ex: 90%) e a sentença concedeu "devolução integral" ou 100%, compute explicitamente: "autora pediu 90% → sentença concedeu 100% = ultra petita confirmado". Registre isso no QUADRO RESUMO como fato confirmado, não como hipótese.
 
 7. REGIME JURÍDICO DO CONTRATO
    – Há alienação fiduciária registrada? Foi invocada como preliminar?
@@ -60,6 +61,10 @@ Analise cada peça processual identificada e produza um texto corrido cobrindo O
 
    VITÓRIAS DA DEFESA (pedidos julgados IMPROCEDENTES = ré ganhou):
    - [pedido] → IMPROCEDENTE — [motivo]
+
+   LEIS/NORMAS ESPECIAIS INVOCADAS PELAS PARTES OU PELO JUÍZO (além de CDC e CC):
+   - [lei e número]: invocada por [parte] para [finalidade]
+   Se nenhuma lei especial foi invocada: escreva "Nenhuma lei especial invocada além de CDC e CC".
 
    TEMAS AUSENTES (nunca pedidos nem mencionados nos autos):
    - [tema]
@@ -86,7 +91,7 @@ A) VITÓRIAS DA DEFESA → PROIBIDOS no Bloco 3 e Bloco 2. A ré já ganhou esse
 
 B) TEMAS AUSENTES → não existem nos autos. Proibido mencioná-los.
 
-C) DIVERGÊNCIA PEDIDO × CONCESSÃO → Se o quadro registrar divergência (ex: "pediu 90% → concedeu 100%"), gere OBRIGATORIAMENTE uma tese no Bloco 3 sobre ultra petita (art. 492 CPC) com categoria "fundamento_nao_atacado".
+C) DIVERGÊNCIA PEDIDO × CONCESSÃO → Se o quadro registrar divergência confirmada (ex: "pediu 90% → concedeu 100% = ultra petita confirmado"), gere OBRIGATORIAMENTE uma tese no Bloco 3 sobre ultra petita (art. 492 CPC) com categoria "fundamento_nao_atacado". Trate como FATO CONFIRMADO, não como hipótese — não use "caso", "se", "verificar se". O QUADRO RESUMO já computou; use a conclusão diretamente.
 
 D) HONORÁRIOS MAJORADOS → Se o quadro registrar majoração por art. 85, §11 CPC, mencione o impacto no Bloco 2 (dimensão C ou síntese) e considere gerar tese sobre a imprudência do recurso no Bloco 3.
 
@@ -107,7 +112,7 @@ PROIBIDO — exemplos de alucinação que destroem a credibilidade do diagnósti
 ✗ Mencionar "danos morais" como lacuna se o juiz JÁ julgou danos morais improcedentes
 ✗ Mencionar "Lei 6.766/79" ou "atraso de obra" se o processo não versa sobre isso
 ✗ Mencionar "distinção lote × imóvel pronto" em nexo causal se presunções de lucros cessantes não foram pedidas
-✗ Gerar tese sobre Lei 6.766/79 como regime complementar autônomo se a lei não foi invocada por nenhuma das partes — o fato de ser contrato de loteamento não basta
+✗ Gerar tese sobre qualquer lei especial (Lei 6.766/79, Lei 9.514/97, etc.) se essa lei não constar na seção "LEIS/NORMAS ESPECIAIS INVOCADAS" do QUADRO RESUMO — o fato de ser contrato de loteamento não autoriza invocar Lei 6.766/79 como tese autônoma
 ✗ Qualquer tese sobre tema ausente da petição inicial, sentença ou recurso
 
 CORRETO — exemplos de teses reais:
