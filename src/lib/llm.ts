@@ -144,16 +144,16 @@ Use EXATAMENTE estes códigos:
 
 ━━━ INSTRUÇÕES OBRIGATÓRIAS ━━━
 • Bloco 3: não há limite máximo de teses — gere todas as que forem relevantes. Títulos específicos e concretos (ex: "Ausência de impugnação específica da cláusula 5.6" — nunca "Lacuna na contestação"). Campo "analise": máximo 4 frases diretas.
-• Bloco 4: mínimo 3 oportunidades. Campo "padraoSugerido": 3 a 5 parágrafos com raciocínio jurídico completo. Campo "checklist": 4 a 6 itens verificáveis e concretos.
+• Bloco 4: identifica padrões sistêmicos replicáveis — não apenas para este processo, mas para todos os processos similares do empreendimento. Mínimo 3 oportunidades. Campo "titulo": nome do padrão replicável (ex: "Ausência de invocação do regime da AF como preliminar"). Campo "padraoSugerido": 3 a 5 parágrafos com raciocínio jurídico completo sobre como agir em todos os casos similares. Campo "checklist": 4 a 6 itens verificáveis e concretos para implementação.
 • achadoNovo: true = nunca levantado; false = levantado mas de forma insuficiente.
 • Análise do risco (Bloco 2): cada dimensão máximo 3 frases. RESTRIÇÃO ABSOLUTA: mencione APENAS institutos jurídicos que aparecem nos documentos. Se lucros cessantes não foram pedidos, NÃO escreva sobre lucros cessantes em nenhuma dimensão. Se danos morais foram rejeitados, NÃO os mencione como risco. Escreva sobre o que o processo REALMENTE contém.
 • ANTI-ALUCINAÇÃO: aplique os 3 passos de verificação antes de cada tese. O diagnóstico deve refletir o processo real, não um processo hipotético.
 • CRÍTICO: o JSON deve ser completamente fechado. Nunca deixe arrays ou objetos abertos.
 
 CRITÉRIOS DE COMPLEXIDADE (use para definir o "nivel"):
-• Baixa: 1 réu, 1-2 pedidos simples, sem recurso pendente, provas documentais apenas
-• Média: múltiplos pedidos OU recurso em andamento OU prova pericial OU litisconsórcio
-• Alta: múltiplos réus + recursos + pedidos complexos (dano moral, lucros cessantes, nulidade) + divergência jurisprudencial
+• Baixa: pedido único ou simples, sem recurso pendente, matéria pacificada, baixo valor da causa, provas documentais apenas
+• Média: pedidos cumulados OU ao menos um recurso em andamento OU matéria com divergência jurisprudencial OU valor médio da causa OU prova pericial OU litisconsórcio
+• Alta: múltiplos pedidos, vários recursos, matéria controvertida, alto valor da causa, pluralidade de partes ou réus — combinação de vários desses fatores
 
 Retorne EXCLUSIVAMENTE JSON válido. Sem texto adicional. Sem markdown. Sem explicações.
 
@@ -161,30 +161,30 @@ FORMATO:
 {
   "complexidade": {
     "nivel": "Baixa" | "Média" | "Alta",
-    "justificativa": "3 a 5 linhas citando elementos concretos do processo"
+    "justificativa": "3 a 5 linhas citando: número de recursos, volume e tipo de provas, matéria jurídica (pacificada/controvertida), impacto financeiro (valor da causa) e pluralidade de partes"
   },
   "risco": {
     "nivel": "Baixo" | "Médio" | "Alto",
-    "cobertura": "análise da dimensão (A)",
-    "prova": "análise da dimensão (B)",
-    "faseRecursal": "análise da dimensão (C)",
-    "nexoCausal": "análise da dimensão (D)",
-    "analiseGeral": "síntese final do risco"
+    "cobertura": "(A) O núcleo de cada pedido do autor foi respondido pela defesa? Máx. 3 frases.",
+    "prova": "(B) A defesa tem sustentação documental para cada tese que sustenta? Máx. 3 frases.",
+    "faseRecursal": "(C) Os recursos interpostos atacam os fundamentos corretos da decisão recorrida? Máx. 3 frases.",
+    "nexoCausal": "(D) O dano alegado pelo autor foi questionado ou aceito tacitamente pela defesa? Máx. 3 frases.",
+    "analiseGeral": "síntese final do risco em 2-3 frases"
   },
   "tesesnaoExploradas": [
     {
-      "titulo": "string específico",
+      "titulo": "descrição específica e concreta da lacuna — nunca genérica",
       "categoria": "codigo_categoria",
       "achadoNovo": true,
-      "analise": "análise detalhada"
+      "analise": "análise detalhada em até 4 frases diretas"
     }
   ],
   "oportunidades": [
     {
-      "titulo": "string",
-      "origemNoCaso": "fato concreto com referência de página",
-      "padraoSugerido": "3 a 5 parágrafos com raciocínio jurídico completo",
-      "checklist": ["item 1", "item 2", "item 3", "item 4"]
+      "titulo": "nome do padrão replicável para todos os casos similares",
+      "origemNoCaso": "fato concreto do processo com referência de página",
+      "padraoSugerido": "3 a 5 parágrafos com raciocínio jurídico completo sobre como agir em todos os casos similares do empreendimento",
+      "checklist": ["item verificável 1", "item verificável 2", "item verificável 3", "item verificável 4"]
     }
   ]
 }`;

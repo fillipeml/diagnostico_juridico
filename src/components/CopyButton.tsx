@@ -9,6 +9,15 @@ interface CopyButtonProps {
   empreendimento: string;
 }
 
+const CATEGORIA_LABEL: Record<string, string> = {
+  impugnacao_ausente: "Impugnação Ausente",
+  prova_nao_utilizada: "Prova Não Utilizada",
+  fundamento_nao_atacado: "Fundamento Não Atacado",
+  argumento_livre: "Argumento Livre",
+  estrutura_recursal_fragil: "Estrutura Recursal Frágil",
+  tese_juridica_possivel: "Tese Jurídica Possível",
+};
+
 function formatForExcel(
   result: DiagnosticoResult,
   nomeArquivo: string,
@@ -44,7 +53,7 @@ function formatForExcel(
   lines.push("");
   result.tesesnaoExploradas.forEach((tese, i) => {
     lines.push(`${i + 1}. ${tese.titulo}`);
-    lines.push(`   Categoria: ${tese.categoria}`);
+    lines.push(`   Categoria: ${CATEGORIA_LABEL[tese.categoria] ?? tese.categoria}`);
     lines.push(`   Achado Novo: ${tese.achadoNovo ? "Sim" : "Não"}`);
     lines.push(`   Análise: ${tese.analise}`);
     lines.push("");

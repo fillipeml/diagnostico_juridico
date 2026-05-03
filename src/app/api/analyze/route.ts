@@ -7,6 +7,8 @@ import { query, initDB } from "@/lib/db";
 export const maxDuration = 300;
 
 export async function POST(request: NextRequest) {
+  let recordId: number | undefined;
+
   try {
     await initDB();
 
@@ -49,7 +51,7 @@ export async function POST(request: NextRequest) {
       `INSERT INTO diagnosticos (nomeArquivo, urlArquivo, empreendimento, status) VALUES (?, ?, ?, 'processando')`,
       [file.name, fileUrl, empreendimento]
     );
-    const id: number = insertResult.insertId;
+    recordId = insertResult.insertId as number;
 
     // Extract text from PDF
     const extracted = await extractPDF(buffer);
@@ -59,7 +61,7 @@ export async function POST(request: NextRequest) {
         `UPDATE diagnosticos SET status='erro', erroMensagem=? WHERE id=?`,
         [
           "Este processo foi digitalizado como imagem (PDF escaneado). O sistema não consegue extrair texto de PDFs escaneados. Utilize a cópia digital do processo obtida diretamente do sistema do tribunal.",
-          id,
+          recordId,
         ]
       );
       return NextResponse.json(
@@ -92,15 +94,28 @@ export async function POST(request: NextRequest) {
         JSON.stringify(result.risco),
         JSON.stringify(result.tesesnaoExploradas),
         JSON.stringify(result.oportunidades),
-        id,
+        recordId,
       ]
     );
 
-    return NextResponse.json({ id, result });
+    return NextResponse.json({ id: recordId, result });
   } catch (err: unknown) {
     console.error("[analyze] error:", err);
     const message =
       err instanceof Error ? err.message : "Erro interno do servidor.";
+
+    // Mark the DB record as 'erro' if it was already created
+    if (recordId !== undefined) {
+      try {
+        await query(
+          `UPDATE diagnosticos SET status='erro', erroMensagem=? WHERE id=?`,
+          [message, recordId]
+        );
+      } catch (dbErr) {
+        console.error("[analyze] failed to update error status:", dbErr);
+      }
+    }
+
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }

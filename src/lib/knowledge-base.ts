@@ -78,6 +78,12 @@ const KNOWLEDGE_BY_EMPREENDIMENTO: Record<string, string> = {
 • Contrato com AF: inadequação da via eleita (Lei 9.514/97) e impossibilidade jurídica do pedido não arguidas.
 • Pedido de inclusão de parcelas vincendas não impugnado na contestação.`,
 
+  "Verana Reserva Imperial": `Padrões recorrentes — Verana Reserva Imperial / Residencial Itahyê (base: diagnósticos reais STG):
+• Possuidor direto é responsável pelas despesas condominiais — ilegitimidade passiva da incorporadora (art. 337, XI CPC) não suscitada como preliminar.
+• Marco temporal da responsabilidade em AF: consolidação da propriedade opera efeitos ex nunc — não pode retroagir ao período anterior.
+• Contrato com AF: inadequação da via eleita (Lei 9.514/97) e impossibilidade jurídica do pedido não arguidas.
+• Pedido de inclusão de parcelas vincendas não impugnado na contestação.`,
+
   "Verana Cachoeiro": `Padrões recorrentes — Verana Cachoeiro (base: diagnósticos reais STG):
 • Alienação fiduciária sem registro: eficácia obrigacional inter partes subsiste — o registro tem função publicitária (oponibilidade a terceiros), não constitutiva da garantia.
 • Ausência de preliminar de inadequação da via eleita em contratos com AF (Lei 9.514/97).

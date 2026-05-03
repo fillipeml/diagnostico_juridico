@@ -30,7 +30,7 @@ const levelConfig: Record<
 };
 
 export default function Block1Complexidade({ nivel, justificativa }: Block1Props) {
-  const cfg = levelConfig[nivel];
+  const cfg = levelConfig[nivel] ?? levelConfig["Baixa"];
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
